@@ -8,6 +8,43 @@
   </head>
   <body>
     <!-- main section -->
+    <section class="dashboard-section">
+      <!-- navbar -->
+      <nav class="navbar-container">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#Notes">Notes</a>
+      </nav>
+
+      <div class="socialHandles-container">
+        <a target="_blank" href="https://github.com/SonuAdhikariGH">Github</a>
+        <a target="_blank" href="https://x.com/sonutwts">X</a>
+      </div>
+
+      <!-- funcional container. i.e. ccompleted tasks, ongoing tasks & total tasks -->
+
+      <div class="mainDashboard-container">
+        <!-- ongoing tasks -->
+        <div class="ongoing-tasks">
+          <span class="ongoingTask-label">Ongoing Tasks</span>
+          <p id="ongoingTaskNumber">2</p>
+        </div>
+
+        <!-- completed tasks -->
+        <div class="completed-tasks">
+          <span class="completedTask-label">Completed Tasks</span>
+          <p id="completedTasNumber">13</p>
+        </div>
+
+        <!-- total tasks -->
+        <div class="total-tasks">
+          <span class="totalTask-label">Total Tasks</span>
+          <p id="totalTaskNumber">15</p>
+        </div>
+      </div>
+
+      <button id="createTaskRedirect">Create Task</button>
+    </section>
   </body>
   <script src="app.js"></script>
 </html>
