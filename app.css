@@ -28,12 +28,82 @@ body {
   gap: 12px;
   background-color: rgb(233, 233, 227);
   padding: 12px 36px;
+  margin: 0 auto;
   border-radius: 32px;
-  width: fit-content;
+  max-width: fit-content;
   border: 2px solid rgb(160, 160, 150);
 
   a {
     text-decoration: none;
     color: black;
+  }
+}
+
+/* social media */
+.socialHandles-container {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  gap: 8px;
+  padding: 16px;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+/* main dashboard container */
+.mainDashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 650px;
+  gap: 24px;
+  background-color: rgb(238, 238, 221);
+  padding: 12px;
+  border: 2px solid rgb(141, 141, 108);
+}
+
+/* ongoing-tasks */
+.ongoing-tasks {
+  background-color: rgba(243, 96, 96, 0.767);
+  height: 60px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid rgb(141, 108, 108);
+}
+
+/* completed-tasks */
+.completed-tasks {
+  background-color: rgba(162, 243, 96, 0.767);
+  height: 60px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid rgb(108, 141, 121);
+}
+
+/* total-tasks */
+.total-tasks {
+  background-color: rgba(241, 243, 96, 0.767);
+  height: 60px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid rgb(137, 141, 108);
+}
+
+/* btn-container */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #createTaskRedirect {
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-size: 1rem;
+    border: 2px solid rgb(141, 141, 108);
+    background-color: rgb(227, 227, 217);
   }
 }

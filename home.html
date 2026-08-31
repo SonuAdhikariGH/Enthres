@@ -10,20 +10,21 @@
     <title>Enthres - Liberty at your palm</title>
   </head>
   <body>
+    <!-- social handles container -->
+    <div class="socialHandles-container">
+      <a target="_blank" href="https://github.com/SonuAdhikariGH">Github</a>
+      <a target="_blank" href="https://x.com/sonutwts">X</a>
+    </div>
+
+    <!-- navbar -->
+    <nav class="navbar-container">
+      <a href="#home">Home</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#Notes">Notes</a>
+    </nav>
+
     <!-- main section -->
     <section class="dashboard-section">
-      <!-- navbar -->
-      <nav class="navbar-container">
-        <a href="#home">Home</a>
-        <a href="#tasks">Tasks</a>
-        <a href="#Notes">Notes</a>
-      </nav>
-
-      <div class="socialHandles-container">
-        <a target="_blank" href="https://github.com/SonuAdhikariGH">Github</a>
-        <a target="_blank" href="https://x.com/sonutwts">X</a>
-      </div>
-
       <!-- funcional container. i.e. ccompleted tasks, ongoing tasks & total tasks -->
 
       <div class="mainDashboard-container">
@@ -45,8 +46,9 @@
           <p id="totalTaskNumber">15</p>
         </div>
       </div>
-
-      <button id="createTaskRedirect">Create Task</button>
+      <div class="btn-container">
+        <button id="createTaskRedirect">Create Task</button>
+      </div>
     </section>
   </body>
   <script src="app.js"></script>
