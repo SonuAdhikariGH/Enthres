@@ -20,11 +20,11 @@
     <nav class="navbar-container">
       <a href="#home">Home</a>
       <a href="#tasks">Tasks</a>
-      <a href="#notes">Notes</a>
+      <a href="#quotes">Quotes</a>
     </nav>
 
     <!-- main section -->
-    <section class="dashboard-section">
+    <section id="home" class="dashboard-section">
       <!-- funcional container. i.e. ccompleted tasks, ongoing tasks & total tasks -->
 
       <div class="mainDashboard-container">
@@ -52,7 +52,7 @@
     </section>
 
     <!-- tasks section -->
-    <section class="tasks-section">
+    <section id="tasks" class="tasks-section">
       <!-- header -->
       <h2 class="taskSec-header">Create task</h2>
 
@@ -69,8 +69,6 @@
           <option value="Bill">Bill</option>
         </select>
 
-        <input id="taskDescription" placeholder="Describe the task.." />
-
         <div class="createBtn-container">
           <button id="createBtn">Create</button>
         </div>
@@ -83,7 +81,7 @@
     </section>
 
     <!-- quote section -->
-    <section class="quote-section">
+    <section id="quotes" class="quote-section">
       <h2 class="quoteSec-header">Get Quotes</h2>
       <!-- main quote functional container -->
       <div class="mainQuote-container">
@@ -103,5 +101,5 @@
 
     <p class="watermark">Made by sanu adhikari ❤️</p>
   </body>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </html>
