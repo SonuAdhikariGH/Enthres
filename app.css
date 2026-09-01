@@ -18,6 +18,7 @@ body {
   height: 100vh;
   max-height: 600px;
   width: 100%;
+  align-content: center;
 }
 
 /* navbar */
@@ -98,6 +99,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 16px;
 
   #createTaskRedirect {
     padding: 8px 16px;
@@ -106,4 +108,61 @@ body {
     border: 2px solid rgb(141, 141, 108);
     background-color: rgb(227, 227, 217);
   }
+}
+
+/* task section */
+.tasks-section {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+  max-height: 600px;
+  width: 100%;
+  margin-top: 32px;
+  align-content: center;
+  gap: 12px;
+}
+
+/* taskSec-header */
+.taskSec-header {
+  margin-top: 24px;
+}
+
+/* task main container */
+.taskMain-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: beige;
+  height: 250px;
+  width: 400px;
+  border: 2px solid rgb(134, 134, 128);
+  border-radius: 16px;
+  align-content: center;
+  gap: 8px;
+
+  input {
+    padding: 8px;
+    border-radius: 16px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+  }
+
+  select {
+    padding: 8px;
+    border-radius: 16px;
+    text-align: center;
+  }
+}
+
+/* createBtn */
+#createBtn {
+  margin: 8px;
+  padding: 4px 8px;
+  border-radius: 36px;
+  font-size: 1rem;
+  background-color: rgb(226, 226, 207);
+  border: 2px solid rgb(134, 134, 128);
 }
