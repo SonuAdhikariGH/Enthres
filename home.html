@@ -20,7 +20,7 @@
     <nav class="navbar-container">
       <a href="#home">Home</a>
       <a href="#tasks">Tasks</a>
-      <a href="#Notes">Notes</a>
+      <a href="#notes">Notes</a>
     </nav>
 
     <!-- main section -->
@@ -48,6 +48,35 @@
       </div>
       <div class="btn-container">
         <button id="createTaskRedirect">Create Task</button>
+      </div>
+    </section>
+
+    <!-- tasks section -->
+    <section class="tasks-section">
+      <!-- header -->
+      <h2>Create task</h2>
+
+      <!-- main task elements -->
+      <div class="taskMain-container">
+        <input id="taskName" placeholder="Enter the task" />
+        <select id="categorySelect">
+          <option value="">--Category--</option>
+          <option value="Chores">Chores</option>
+          <option value="Gym">Gym</option>
+          <option value="Studies">Studies</option>
+          <option value="Coding">Coding</option>
+          <option value="Work">Work</option>
+          <option value="Bill">Bill</option>
+        </select>
+
+        <input id="taskDescription" placeholder="Describe the task.." />
+
+        <button id="createBtn">Create</button>
+      </div>
+
+      <!-- task list container -->
+      <div id="taskListContainer" class="taskList-container">
+        <ul id="taskListMain"></ul>
       </div>
     </section>
   </body>
