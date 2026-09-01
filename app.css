@@ -166,3 +166,14 @@ body {
   background-color: rgb(226, 226, 207);
   border: 2px solid rgb(134, 134, 128);
 }
+
+/* taskListContainer */
+.taskList-container {
+  display: grid;
+  height: 200px;
+  width: 400px;
+  background-color: rgb(250, 250, 242);
+  border: 2px solid rgb(134, 134, 128);
+  border-radius: 16px;
+  overflow-y: auto;
+}
