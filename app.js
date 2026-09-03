@@ -1,7 +1,7 @@
 let taskArr = JSON.parse(localStorage.getItem("taskArr")) || [];
 
 const ongoingTaskNumber = document.getElementById("ongoingTaskNumber");
-const completedTasNumber = document.getElementById("completedTasNumber");
+const completedTaskNumber = document.getElementById("completedTaskNumber");
 const totalTaskNumber = document.getElementById("totalTaskNumber");
 const createTaskRedirect = document.getElementById("createTaskRedirect");
 
@@ -9,6 +9,8 @@ const taskName = document.getElementById("taskName");
 const categorySelect = document.getElementById("categorySelect");
 const createBtn = document.getElementById("createBtn");
 const taskListMain = document.getElementById("taskListMain");
+
+// let totalTaskCounter = 0;
 
 function createBtnHandler() {
   // console.log("fired");
@@ -30,6 +32,7 @@ function createBtnHandler() {
 
   taskArr.push(taskObj);
   saveToStorage();
+  dashboardCounterRender();
 
   taskName.value = "";
   categorySelect.value = "";
@@ -37,6 +40,7 @@ function createBtnHandler() {
 
 renderAll();
 
+// save to storage handler
 function saveToStorage() {
   localStorage.setItem("taskArr", JSON.stringify(taskArr));
   renderAll();
@@ -46,28 +50,37 @@ function saveToStorage() {
 function renderAll() {
   taskListMain.innerHTML = "";
   taskArr.forEach((tsk) => {
+    // creation of child element
     const li = document.createElement("li");
     const removeBtn = document.createElement("button");
     const completedBtn = document.createElement("button");
 
+    // inner text assignment
     completedBtn.innerText = "completed";
-
     removeBtn.innerText = "remove";
+
+    // text content assignment
     li.textContent = `${tsk.category}||${tsk.task} || ${tsk.date}`;
 
+    // element appending
     taskListMain.appendChild(li);
     li.appendChild(removeBtn);
     li.appendChild(completedBtn);
 
+    if (tsk.isCompleted) {
+      li.style.textDecoration = "line-through";
+    }
+
+    // eventlistnet assignment with outer functions
     removeBtn.addEventListener("click", () => {
       removeTask(tsk.id);
     });
 
     completedBtn.addEventListener("click", () => {
       completedTaskHandler(tsk.id);
-      li.style.textDecoration = "line-through";
     });
   });
+  dashboardCounterRender();
   console.log("Tasks rendered successfully");
 }
 
@@ -79,6 +92,7 @@ function removeTask(id) {
 
   console.log("Task removed successfully!");
   saveToStorage();
+  dashboardCounterRender();
 }
 
 // completed task button handler
@@ -90,6 +104,7 @@ function completedTaskHandler(id) {
         return tsk;
       }
       if (tsk.isCompleted === false) {
+        alert("Task marked as completed");
         return {
           ...tsk,
           isCompleted: true,
@@ -99,9 +114,38 @@ function completedTaskHandler(id) {
     return tsk;
   });
   saveToStorage();
-  alert("Task marked as completed");
+  dashboardCounterRender();
 }
 
 createBtn.addEventListener("click", createBtnHandler);
 
 // dashboard rendering
+// try forEach
+function dashboardCounterRender() {
+  // ongoingTaskNumber.innerHTML = "";
+  // completedTaskNumber.innerHTML = "";
+  // totalTaskNumber.innerHTML = "";
+  let ongoingTaskCounter = 0;
+  let completedTaskCounter = 0;
+
+  if (taskArr.length < 0) {
+    totalTaskNumber.textContent = 0;
+    return;
+  }
+
+  totalTaskNumber.textContent = taskArr.length;
+
+  taskArr.forEach((tsk) => {
+    if (tsk.isCompleted === false) {
+      ongoingTaskCounter++;
+    }
+    if (tsk.isCompleted === true) {
+      completedTaskCounter++;
+    }
+
+    ongoingTaskNumber.textContent = ongoingTaskCounter;
+    completedTaskNumber.textContent = completedTaskCounter;
+    return tsk;
+  });
+}
+dashboardCounterRender();
