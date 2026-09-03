@@ -41,15 +41,36 @@ function saveToStorage() {
   renderAll();
 }
 
+// render all task
 function renderAll() {
   taskListMain.innerHTML = "";
   taskArr.forEach((tsk) => {
     const li = document.createElement("li");
+    const removeBtn = document.createElement("button");
+
+    removeBtn.innerText = "remove";
     li.textContent = `${tsk.category}||${tsk.task} || ${tsk.date}`;
 
     taskListMain.appendChild(li);
+    li.appendChild(removeBtn);
+
+    removeBtn.addEventListener("click", () => {
+      removeTask(tsk.id);
+    });
   });
   console.log("Tasks rendered successfully");
 }
 
+// remove task function
+function removeTask(id) {
+  taskArr = taskArr.filter((tsk) => {
+    return tsk.id !== id;
+  });
+
+  console.log("Task removed successfully!");
+  saveToStorage();
+}
+
 createBtn.addEventListener("click", createBtnHandler);
+
+// dashboard rendering
