@@ -191,6 +191,7 @@ body {
   align-content: center;
   text-align: center;
   gap: 16px;
+  margin-top: 128px;
 
   /* h2 {
     margin: 6px;

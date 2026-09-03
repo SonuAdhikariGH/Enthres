@@ -11,7 +11,7 @@ const createBtn = document.getElementById("createBtn");
 const taskListMain = document.getElementById("taskListMain");
 
 function createBtnHandler() {
-  console.log("fired");
+  // console.log("fired");
   const taskNameVal = taskName.value.trim();
   const categorySelectVal = categorySelect.value;
 
@@ -25,6 +25,7 @@ function createBtnHandler() {
     category: categorySelectVal,
     date: new Date().toLocaleString(),
     id: Date.now(),
+    isCompleted: false,
   };
 
   taskArr.push(taskObj);
@@ -47,15 +48,24 @@ function renderAll() {
   taskArr.forEach((tsk) => {
     const li = document.createElement("li");
     const removeBtn = document.createElement("button");
+    const completedBtn = document.createElement("button");
+
+    completedBtn.innerText = "completed";
 
     removeBtn.innerText = "remove";
     li.textContent = `${tsk.category}||${tsk.task} || ${tsk.date}`;
 
     taskListMain.appendChild(li);
     li.appendChild(removeBtn);
+    li.appendChild(completedBtn);
 
     removeBtn.addEventListener("click", () => {
       removeTask(tsk.id);
+    });
+
+    completedBtn.addEventListener("click", () => {
+      completedTaskHandler(tsk.id);
+      li.style.textDecoration = "line-through";
     });
   });
   console.log("Tasks rendered successfully");
@@ -69,6 +79,27 @@ function removeTask(id) {
 
   console.log("Task removed successfully!");
   saveToStorage();
+}
+
+// completed task button handler
+function completedTaskHandler(id) {
+  taskArr = taskArr.map((tsk) => {
+    if (tsk.id === id) {
+      if (tsk.isCompleted === true) {
+        alert("It is already marked as completed");
+        return tsk;
+      }
+      if (tsk.isCompleted === false) {
+        return {
+          ...tsk,
+          isCompleted: true,
+        };
+      }
+    }
+    return tsk;
+  });
+  saveToStorage();
+  alert("Task marked as completed");
 }
 
 createBtn.addEventListener("click", createBtnHandler);
