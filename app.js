@@ -120,13 +120,15 @@ function completedTaskHandler(id) {
 createBtn.addEventListener("click", createBtnHandler);
 
 // dashboard rendering
-// try forEach
 function dashboardCounterRender() {
   // ongoingTaskNumber.innerHTML = "";
   // completedTaskNumber.innerHTML = "";
   // totalTaskNumber.innerHTML = "";
   let ongoingTaskCounter = 0;
   let completedTaskCounter = 0;
+
+  ongoingTaskNumber.textContent = ongoingTaskCounter;
+  completedTaskNumber.textContent = completedTaskCounter;
 
   if (taskArr.length < 0) {
     totalTaskNumber.textContent = 0;
@@ -149,3 +151,31 @@ function dashboardCounterRender() {
   });
 }
 dashboardCounterRender();
+
+const mainQuoteList = document.getElementById("mainQuoteList");
+const quoteContent = document.getElementById("quoteContent");
+const quoteAuthor = document.getElementById("quoteAuthor");
+const generateQuoteBtn = document.getElementById("generateQuoteBtn");
+
+// get quotes btn handler
+async function getQuotesBtnHandler() {
+  let url = "https://dummyjson.com/quotes/random";
+  quoteContent.textContent = "Loading...";
+  quoteAuthor.textContent = "";
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      quoteContent.textContent = "Error 404,Try again!";
+      console.log("Error caught and displayed");
+    }
+
+    const data = await res.json();
+    quoteContent.textContent = `“${data.quote}”`;
+    quoteAuthor.textContent = `~${data.author}`;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+generateQuoteBtn.addEventListener("click", getQuotesBtnHandler);
