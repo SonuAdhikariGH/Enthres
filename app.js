@@ -156,7 +156,12 @@ const mainQuoteList = document.getElementById("mainQuoteList");
 const quoteContent = document.getElementById("quoteContent");
 const quoteAuthor = document.getElementById("quoteAuthor");
 const generateQuoteBtn = document.getElementById("generateQuoteBtn");
+const saveQuoteBtn = document.getElementById("saveQuoteBtn");
 
+// quote Arr localstorage
+const quoteArr = JSON.parse(localStorage.getItem("quoteArr")) || [];
+
+let quoteObj;
 // get quotes btn handler
 async function getQuotesBtnHandler() {
   let url = "https://dummyjson.com/quotes/random";
@@ -171,6 +176,13 @@ async function getQuotesBtnHandler() {
     }
 
     const data = await res.json();
+
+    quoteObj = {
+      quote: data.quote,
+      author: data.author,
+    };
+
+    // console.log(quoteObj, "Object created");
     quoteContent.textContent = `“${data.quote}”`;
     quoteAuthor.textContent = `~${data.author}`;
   } catch (err) {
@@ -178,4 +190,41 @@ async function getQuotesBtnHandler() {
   }
 }
 
+// save quote handler
+function saveQuoteHandler() {
+  if (!quoteObj) {
+    alert("Please generate a quote first");
+    return;
+  }
+
+  quoteArr.push(quoteObj);
+  saveToQuoteStorage();
+
+  quoteObj = "";
+  quoteAuthor.textContent = "";
+  quoteContent.textContent = "Generate Another!";
+}
+
+saveToQuoteStorage();
+
+// saveToQuoteStorage handler
+function saveToQuoteStorage() {
+  localStorage.setItem("quoteArr", JSON.stringify(quoteArr));
+  renderQuoteList();
+}
+
+// renderQuoteList
+function renderQuoteList() {
+  mainQuoteList.innerHTML = "";
+
+  quoteArr.forEach((qt) => {
+    const li = document.createElement("li");
+    li.textContent = `${qt.quote} | ~${qt.author}`;
+    mainQuoteList.appendChild(li);
+  });
+
+  console.log("Quote list rendered successfully");
+}
+
 generateQuoteBtn.addEventListener("click", getQuotesBtnHandler);
+saveQuoteBtn.addEventListener("click", saveQuoteHandler);
