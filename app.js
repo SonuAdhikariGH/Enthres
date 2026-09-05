@@ -54,10 +54,12 @@ function renderAll() {
     const li = document.createElement("li");
     const removeBtn = document.createElement("button");
     const completedBtn = document.createElement("button");
+    const editTaskBtn = document.createElement("button");
 
     // inner text assignment
     completedBtn.innerText = "completed";
     removeBtn.innerText = "remove";
+    editTaskBtn.innerText = "Edit";
 
     // text content assignment
     li.textContent = `${tsk.category}||${tsk.task} || ${tsk.date}`;
@@ -66,6 +68,7 @@ function renderAll() {
     taskListMain.appendChild(li);
     li.appendChild(removeBtn);
     li.appendChild(completedBtn);
+    li.appendChild(editTaskBtn);
 
     if (tsk.isCompleted) {
       li.style.textDecoration = "line-through";
@@ -79,9 +82,38 @@ function renderAll() {
     completedBtn.addEventListener("click", () => {
       completedTaskHandler(tsk.id);
     });
+
+    editTaskBtn.addEventListener("click", () => {
+      editTaskBtnHandler(tsk.id);
+    });
   });
   dashboardCounterRender();
   console.log("Tasks rendered successfully");
+}
+
+// edit task function
+function editTaskBtnHandler(id) {
+  taskArr = taskArr.map((tsk) => {
+    if (tsk.id === id) {
+      if (tsk.isCompleted) {
+        alert(
+          "The task is already completed, Therefore no changes can be done.",
+        );
+        return tsk;
+      }
+      let tskInpVal = prompt("Enter new task");
+      if (!tskInpVal) {
+        alert("No task provided, Please try again!");
+        return tsk;
+      }
+      return {
+        ...tsk,
+        task: tskInpVal,
+      };
+    }
+    return tsk;
+  });
+  saveToStorage();
 }
 
 // remove task function
@@ -150,6 +182,7 @@ function dashboardCounterRender() {
     return tsk;
   });
 }
+
 dashboardCounterRender();
 
 const mainQuoteList = document.getElementById("mainQuoteList");
