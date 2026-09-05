@@ -52,8 +52,8 @@ Uses modern CSS features (`backdrop-filter`, `color-mix`, `:has()`) for the glas
 ## Author
 
 **Sonu Adhikari**
-- GitHub: [@SonuAdhikariGH](https://github.com/sanuenthres)
-- X: [@sonutwts](https://x.com/sanuenthres)
+- GitHub: [@sanuenthres](https://github.com/sanuenthres)
+- X: [@sanuenthres](https://x.com/sanuenthres)
 
 ## License
 
