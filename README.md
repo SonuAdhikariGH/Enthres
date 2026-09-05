@@ -41,7 +41,7 @@ No installation or build step needed.
    ```
 2. Open `home.html` directly in your browser, or serve the folder locally for the best experience (some browsers restrict favicons and fetch requests on `file://` URLs):
    ```bash
-   python -m http.server
+   npx vite
    ```
    Then visit `http://localhost:8000/home.html`.
 
