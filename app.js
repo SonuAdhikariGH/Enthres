@@ -10,10 +10,7 @@ const categorySelect = document.getElementById("categorySelect");
 const createBtn = document.getElementById("createBtn");
 const taskListMain = document.getElementById("taskListMain");
 
-// let totalTaskCounter = 0;
-
 function createBtnHandler() {
-  // console.log("fired");
   const taskNameVal = taskName.value.trim();
   const categorySelectVal = categorySelect.value;
 
@@ -46,35 +43,73 @@ function saveToStorage() {
   renderAll();
 }
 
-// render all task
+// render all tasks
 function renderAll() {
   taskListMain.innerHTML = "";
-  taskArr.forEach((tsk) => {
-    // creation of child element
-    const li = document.createElement("li");
-    const removeBtn = document.createElement("button");
-    const completedBtn = document.createElement("button");
-    const editTaskBtn = document.createElement("button");
 
-    // inner text assignment
-    completedBtn.innerText = "completed";
-    removeBtn.innerText = "remove";
+  if (taskArr.length === 0) {
+    const emptyState = document.createElement("li");
+    emptyState.className = "empty-state";
+    emptyState.textContent = "No tasks yet, add one above.";
+    taskListMain.appendChild(emptyState);
+    dashboardCounterRender();
+    return;
+  }
+
+  taskArr.forEach((tsk) => {
+    // creation of child elements
+    const li = document.createElement("li");
+    li.className = "task-item";
+
+    const info = document.createElement("div");
+    info.className = "task-info";
+
+    const category = document.createElement("span");
+    category.className = "task-category";
+    category.dataset.category = tsk.category;
+    category.textContent = tsk.category;
+
+    const text = document.createElement("span");
+    text.className = "task-text";
+    text.textContent = tsk.task;
+
+    const date = document.createElement("span");
+    date.className = "task-date";
+    date.textContent = tsk.date;
+
+    info.appendChild(category);
+    info.appendChild(text);
+    info.appendChild(date);
+
+    const actions = document.createElement("div");
+    actions.className = "task-actions";
+
+    const completedBtn = document.createElement("button");
+    completedBtn.className = "btn-complete";
+    completedBtn.innerText = "Done";
+
+    const editTaskBtn = document.createElement("button");
+    editTaskBtn.className = "btn-edit";
     editTaskBtn.innerText = "Edit";
 
-    // text content assignment
-    li.textContent = `${tsk.category}||${tsk.task} || ${tsk.date}`;
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "btn-remove";
+    removeBtn.innerText = "Remove";
 
-    // element appending
-    taskListMain.appendChild(li);
-    li.appendChild(removeBtn);
-    li.appendChild(completedBtn);
-    li.appendChild(editTaskBtn);
+    actions.appendChild(completedBtn);
+    actions.appendChild(editTaskBtn);
+    actions.appendChild(removeBtn);
+
+    li.appendChild(info);
+    li.appendChild(actions);
 
     if (tsk.isCompleted) {
-      li.style.textDecoration = "line-through";
+      li.classList.add("task-item--done");
     }
 
-    // eventlistnet assignment with outer functions
+    taskListMain.appendChild(li);
+
+    // eventlistener assignment with outer functions
     removeBtn.addEventListener("click", () => {
       removeTask(tsk.id);
     });
@@ -87,6 +122,7 @@ function renderAll() {
       editTaskBtnHandler(tsk.id);
     });
   });
+
   dashboardCounterRender();
   console.log("Tasks rendered successfully");
 }
@@ -153,9 +189,6 @@ createBtn.addEventListener("click", createBtnHandler);
 
 // dashboard rendering
 function dashboardCounterRender() {
-  // ongoingTaskNumber.innerHTML = "";
-  // completedTaskNumber.innerHTML = "";
-  // totalTaskNumber.innerHTML = "";
   let ongoingTaskCounter = 0;
   let completedTaskCounter = 0;
 
@@ -215,7 +248,6 @@ async function getQuotesBtnHandler() {
       author: data.author,
     };
 
-    // console.log(quoteObj, "Object created");
     quoteContent.textContent = `“${data.quote}”`;
     quoteAuthor.textContent = `~${data.author}`;
   } catch (err) {
@@ -235,7 +267,7 @@ function saveQuoteHandler() {
 
   quoteObj = "";
   quoteAuthor.textContent = "";
-  quoteContent.textContent = "Generate Another!";
+  quoteContent.textContent = "Generate another!";
 }
 
 saveToQuoteStorage();
@@ -250,9 +282,28 @@ function saveToQuoteStorage() {
 function renderQuoteList() {
   mainQuoteList.innerHTML = "";
 
+  if (quoteArr.length === 0) {
+    const emptyState = document.createElement("li");
+    emptyState.className = "empty-state";
+    emptyState.textContent = "No saved quotes yet.";
+    mainQuoteList.appendChild(emptyState);
+    return;
+  }
+
   quoteArr.forEach((qt) => {
     const li = document.createElement("li");
-    li.textContent = `${qt.quote} | ~${qt.author}`;
+    li.className = "quote-item";
+
+    const text = document.createElement("span");
+    text.className = "quote-text";
+    text.textContent = qt.quote;
+
+    const author = document.createElement("span");
+    author.className = "quote-author";
+    author.textContent = `~${qt.author}`;
+
+    li.appendChild(text);
+    li.appendChild(author);
     mainQuoteList.appendChild(li);
   });
 

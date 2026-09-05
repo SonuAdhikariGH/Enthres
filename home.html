@@ -3,17 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="theme-color"
+      content="#f6f2ff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b0c1a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="app.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-    </style>
     <title>Enthres - Liberty at your palm</title>
   </head>
   <body>
+    <!-- theme toggle (CSS-only, does not touch app.js) -->
+    <input
+      type="checkbox"
+      id="themeToggle"
+      class="theme-switch-input"
+      aria-label="Toggle dark mode"
+    />
+    <label for="themeToggle" class="theme-switch">
+      <span class="theme-icon sun">☀</span>
+      <span class="theme-icon moon">☾</span>
+      <span class="theme-switch-thumb"></span>
+    </label>
+
+    <!-- brand -->
+    <div class="brand">
+      <p class="brand-mark">Enthres</p>
+      <p class="brand-tag">Liberty at your palm</p>
+    </div>
+
     <!-- social handles container -->
     <div class="socialHandles-container">
-      <a target="_blank" href="https://github.com/SonuAdhikariGH">Github</a>
-      <a target="_blank" href="https://x.com/sonutwts">X</a>
+      <a target="_blank" rel="noopener" href="https://github.com/sanuenthres">
+        <span class="social-icon" aria-hidden="true">🐙</span>GitHub
+      </a>
+      <a target="_blank" rel="noopener" href="https://x.com/sanuenthres">
+        <span class="social-icon" aria-hidden="true">✕</span>X
+      </a>
     </div>
 
     <!-- navbar -->
@@ -47,7 +80,7 @@
         </div>
       </div>
       <div class="btn-container">
-        <button id="createTaskRedirect">Create Task</button>
+        <a id="createTaskRedirect" href="#tasks">Create Task</a>
       </div>
     </section>
 
@@ -86,7 +119,7 @@
       <!-- main quote functional container -->
       <div class="mainQuote-container">
         <p id="quoteContent"></p>
-        <p id="quoteAuthor">Genearate One!</p>
+        <p id="quoteAuthor">Generate a quote to save it here.</p>
 
         <div class="quoteBtn-container">
           <button id="generateQuoteBtn">Generate Quote</button>
